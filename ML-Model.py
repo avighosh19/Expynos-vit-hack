@@ -575,3 +575,293 @@ def tuningCV(knn):
     # examine the best model
     print('Multiparam. Best Score: ', grid.best_score_)
     print('Multiparam. Best Params: ', grid.best_params_)
+    
+    def logisticRegression():
+    # train a logistic regression model on the training set
+    logreg = LogisticRegression()
+    logreg.fit(X_train, y_train)
+    
+    # make class predictions for the testing set
+    y_pred_class = logreg.predict(X_test)
+    
+    print('########### Logistic Regression ###############')
+    
+    accuracy_score = evalClassModel(logreg, y_test, y_pred_class, True)
+    
+    #Data for final graph
+    methodDict['Log. Regres.'] = accuracy_score * 100
+    
+    logisticRegression()
+    
+    
+    # Calculating the best parameters
+    knn = KNeighborsClassifier(n_neighbors=5)
+    
+    # From https://github.com/justmarkham/scikit-learn-videos/blob/master/08_grid_search.ipynb
+    #tuningCV(knn)
+    #tuningGridSerach(knn)
+    #tuningMultParam(knn)
+    
+    # define the parameter values that should be searched
+    k_range = list(range(1, 31))
+    weight_options = ['uniform', 'distance']
+    
+    # specify "parameter distributions" rather than a "parameter grid"
+    param_dist = dict(n_neighbors=k_range, weights=weight_options)
+    tuningRandomizedSearchCV(knn, param_dist)
+    
+    # train a KNeighborsClassifier model on the training set
+    knn = KNeighborsClassifier(n_neighbors=27, weights='uniform')
+    knn.fit(X_train, y_train)
+    
+    # make class predictions for the testing set
+    y_pred_class = knn.predict(X_test)
+    
+    print('########### KNeighborsClassifier ###############')
+    
+    accuracy_score = evalClassModel(knn, y_test, y_pred_class, True)
+
+    #Data for final graph
+    methodDict['KNN'] = accuracy_score * 100
+
+    Knn()
+    
+    def treeClassifier():
+    # Calculating the best parameters
+    tree = DecisionTreeClassifier()
+    featuresSize = feature_cols.__len__()
+    param_dist = {"max_depth": [3, None],
+              "max_features": randint(1, featuresSize),
+              "min_samples_split": randint(2, 9),
+              "min_samples_leaf": randint(1, 9),
+              "criterion": ["gini", "entropy"]}
+    tuningRandomizedSearchCV(tree, param_dist)
+    
+    # train a decision tree model on the training set
+    tree = DecisionTreeClassifier(max_depth=3, min_samples_split=8, max_features=6, criterion='entropy', min_samples_leaf=7)
+    tree.fit(X_train, y_train)
+    
+    # make class predictions for the testing set
+    y_pred_class = tree.predict(X_test)
+    
+    print('########### Tree classifier ###############')
+    
+    accuracy_score = evalClassModel(tree, y_test, y_pred_class, True)
+
+    #Data for final graph
+    methodDict['Tree clas.'] = accuracy_score * 100
+    
+    treeClassifier()
+    
+    def randomForest():
+    # Calculating the best parameters
+    forest = RandomForestClassifier(n_estimators = 20)
+
+    featuresSize = feature_cols.__len__()
+    param_dist = {"max_depth": [3, None],
+              "max_features": randint(1, featuresSize),
+              "min_samples_split": randint(2, 9),
+              "min_samples_leaf": randint(1, 9),
+              "criterion": ["gini", "entropy"]}
+    tuningRandomizedSearchCV(forest, param_dist)
+    
+    # Building and fitting my_forest
+    forest = RandomForestClassifier(max_depth = None, min_samples_leaf=8, min_samples_split=2, n_estimators = 20, random_state = 1)
+    my_forest = forest.fit(X_train, y_train)
+    
+    # make class predictions for the testing set
+    y_pred_class = my_forest.predict(X_test)
+    
+    print('########### Random Forests ###############')
+    
+    accuracy_score = evalClassModel(my_forest, y_test, y_pred_class, True)
+
+    #Data for final graph
+    methodDict['R. Forest'] = accuracy_score * 100
+    
+    randomForest()
+    
+    def bagging():
+    # Building and fitting 
+    bag = BaggingClassifier(DecisionTreeClassifier(), max_samples=1.0, max_features=1.0, bootstrap_features=False)
+    bag.fit(X_train, y_train)
+    
+    # make class predictions for the testing set
+    y_pred_class = bag.predict(X_test)
+    
+    print('########### Bagging ###############')
+    
+    accuracy_score = evalClassModel(bag, y_test, y_pred_class, True)
+
+    #Data for final graph
+    methodDict['Bagging'] = accuracy_score * 100
+    
+    bagging()
+    
+    def boosting():
+    # Building and fitting 
+    clf = DecisionTreeClassifier(criterion='entropy', max_depth=1)
+    boost = AdaBoostClassifier(base_estimator=clf, n_estimators=500)
+    boost.fit(X_train, y_train)
+    
+    # make class predictions for the testing set
+    y_pred_class = boost.predict(X_test)
+    
+    print('########### Boosting ###############')
+    
+    accuracy_score = evalClassModel(boost, y_test, y_pred_class, True)
+
+    #Data for final graph
+    methodDict['Boosting'] = accuracy_score * 100
+    
+    boosting()
+    
+    def stacking():
+    # Building and fitting 
+    clf1 = KNeighborsClassifier(n_neighbors=1)
+    clf2 = RandomForestClassifier(random_state=1)
+    clf3 = GaussianNB()
+    lr = LogisticRegression()
+    stack = StackingClassifier(classifiers=[clf1, clf2, clf3], meta_classifier=lr)
+    stack.fit(X_train, y_train)
+    
+    # make class predictions for the testing set
+    y_pred_class = stack.predict(X_test)
+    
+    print('########### Stacking ###############')
+    
+    accuracy_score = evalClassModel(stack, y_test, y_pred_class, True)
+
+    #Data for final graph
+    methodDict['Stacking'] = accuracy_score * 100
+    
+    stacking()
+    
+    import tensorflow as tf
+import argparse
+
+
+batch_size = 100
+train_steps = 1000
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=0)
+
+def train_input_fn(features, labels, batch_size):
+    """An input function for training"""
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
+
+    # Shuffle, repeat, and batch the examples.
+    return dataset.shuffle(1000).repeat().batch(batch_size)
+
+def eval_input_fn(features, labels, batch_size):
+    """An input function for evaluation or prediction"""
+    features=dict(features)
+    if labels is None:
+        # No labels, use only features.
+        inputs = features
+    else:
+        inputs = (features, labels)
+
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices(inputs)
+
+    # Batch the examples
+    assert batch_size is not None, "batch_size must not be None"
+    dataset = dataset.batch(batch_size)
+
+    # Return the dataset.
+    return dataset
+
+# Define Tensorflow feature columns
+age = tf.feature_column.numeric_column("Age")
+gender = tf.feature_column.numeric_column("Gender")
+family_history = tf.feature_column.numeric_column("family_history")
+food = tf.feature_column.numeric_column("food")
+sleep = tf.feature_column.numeric_column("sleep")
+anonymity = tf.feature_column.numeric_column("anonymity")
+confidence_selfesteem = tf.feature_column.numeric_column("confidence_selfesteem")
+abuse = tf.feature_column.numeric_column("abuse")
+feature_columns = [age, gender, family_history, food, sleep, anonymity, confidence_selfesteem, abuse]
+
+# Build a DNN with 2 hidden layers and 10 nodes in each hidden layer.
+model = tf.estimator.DNNClassifier(feature_columns=feature_columns,
+                                    hidden_units=[10, 10],
+                                    optimizer=tf.keras.optimizers.Adam())
+
+model.train(input_fn=lambda:train_input_fn(X_train, y_train, batch_size), steps=train_steps)
+
+eval_result = model.evaluate(
+    input_fn=lambda:eval_input_fn(X_test, y_test, batch_size))
+
+print('\nTest set accuracy: {accuracy:0.2f}\n'.format(**eval_result))
+
+#Data for final graph
+accuracy = eval_result['accuracy'] * 100
+methodDict['NN DNNClasif.'] = accuracy
+
+predictions = list(model.predict(input_fn=lambda:eval_input_fn(X_train, y_train, batch_size=batch_size)))
+
+# Generate predictions from the model
+template = ('\nIndex: "{}", Prediction is "{}" ({:.1f}%), expected "{}"')
+
+# Dictionary for predictions
+col1 = []
+col2 = []
+col3 = []
+
+
+for idx, input, p in zip(X_train.index, y_train, predictions):
+    v  = p["class_ids"][0] 
+    class_id = p['class_ids'][0]
+    probability = p['probabilities'][class_id] # Probability
+    
+    # Adding to dataframe
+    col1.append(idx) # Index
+    col2.append(v) # Prediction
+    col3.append(input) # Expecter
+    
+   
+    #print(template.format(idx, v, 100 * probability, input))
+
+
+results = pd.DataFrame({'index':col1, 'prediction':col2, 'expected':col3})
+results.head()
+
+def plotSuccess():
+    s = pd.Series(methodDict)
+    s = s.sort_values(ascending=False)
+    plt.figure(figsize=(12,8))
+    #Colors
+    ax = s.plot(kind='bar') 
+    for p in ax.patches:
+        ax.annotate(str(round(p.get_height(),2)), (p.get_x() * 1.005, p.get_height() * 1.005))
+    plt.ylim([70.0, 90.0])
+    plt.xlabel('Method')
+    plt.ylabel('Percentage')
+    plt.title('Success of methods')
+     
+    plt.show()
+    
+    plotSuccess()
+    
+    # Generate predictions with the best method
+clf = AdaBoostClassifier()
+clf.fit(X, y)
+dfTestPredictions = clf.predict(X_test)
+
+# Write predictions to csv file
+# We don't have any significative field so we save the index
+results = pd.DataFrame({'Index': X_test.index, 'Treatment': dfTestPredictions})
+# Save to file
+# This file will be visible after publishing in the output section
+results.to_csv('results.csv', index=False)
+results.head()
+
+# Write predictions to csv file
+# We don't have any significative field so we save the index
+results = pd.DataFrame({'Index': X_test.index, 'Treatment': dfTestPredictions})
+# Save to file
+# This file will be visible after publishing in the output section
+results.to_csv('submission.csv', index=False)
+    
