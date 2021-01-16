@@ -1,2 +1,2 @@
-# Expynos-vit-hack
+# Exypnos-vit-hack
 Vit Hack
