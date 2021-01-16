@@ -1,0 +1,324 @@
+!DOCTYPE html>
+<html>
+  <head>
+    <title>Settings</title>
+    <link rel="stylesheet" type="text/css" href="settings.css" />
+    <meta charset="UTF-8" />
+    <meta name="description" content="Free Web tutorials" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background: #000000;
+      }
+      .settings {
+        position: absolute;
+        width: 20%;
+        height: 3%;
+        left: 22.5%;
+        top: 10%;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 65px;
+        line-height: 76px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #37abbf;
+      }
+      .label {
+        position: absolute;
+        width: 20%;
+        height: 5%;
+        left: 22.5%;
+        top: 25%;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 45px;
+        line-height: 53px;
+        display: flex;
+        align-items: center;
+        color: #f4f1d0;
+      }
+      .label1 {
+        position: absolute;
+        width: 20%;
+        height: 5%;
+        left: 22.5%;
+        top: 36%;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 45px;
+        line-height: 53px;
+        display: flex;
+        align-items: center;
+        color: #f4f1d0;
+      }
+      .label2 {
+        position: absolute;
+        width: 20%;
+        height: 5%;
+        left: 22.5%;
+        top: 45%;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 45px;
+        line-height: 53px;
+        display: flex;
+        align-items: center;
+        color: #f4f1d0;
+      }
+      .label3 {
+        position: absolute;
+        width: 20%;
+        height: 5%;
+        left: 22.5%;
+        top: 54%;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 45px;
+        line-height: 53px;
+        display: flex;
+        align-items: center;
+        color: #f4f1d0;
+      }
+      .label4 {
+        position: absolute;
+        width: 20%;
+        height: 5%;
+        left: 22.5%;
+        top: 63%;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 45px;
+        line-height: 53px;
+        display: flex;
+        align-items: center;
+        color: #f4f1d0;
+      }
+      .input {
+        position: absolute;
+        width: 30%;
+        height: 3%;
+        left: 22.5%;
+        top: 32%;
+        border: 4px solid #444444;
+      }
+      .input1 {
+        position: absolute;
+        width: 30%;
+        height: 3%;
+        left: 22.5%;
+        top: 41%;
+        border: 4px solid #444444;
+      }
+      .input2 {
+        position: absolute;
+        width: 30%;
+        height: 3%;
+        left: 22.5%;
+        top: 50%;
+        border: 4px solid #444444;
+      }
+      .input3 {
+        position: absolute;
+        width: 30%;
+        height: 3%;
+        left: 22.5%;
+        top: 59%;
+        border: 4px solid #444444;
+      }
+      .input4 {
+        position: absolute;
+        width: 30%;
+        height: 3%;
+        left: 22.5%;
+        top: 68%;
+        border: 4px solid #444444;
+      }
+      .button {
+        position: absolute;
+        width: 200px;
+        height: 60px;
+        left: 30%;
+        top: 75%;
+
+        background: linear-gradient(270deg, #009bf2 0%, #08c3ec 100%);
+        border-radius: 10px;
+      }
+      .save {
+        position: absolute;
+        width: 111px;
+        height: 58px;
+        left: 50px;
+        top: -95%;
+        font-family: Oswald;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 50px;
+        line-height: 74px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #f4f1d0;
+      }
+      .sidenav {
+        height: 100%; /* Full-height: remove this if you want "auto" height */
+        width: 15%; /* Set the width of the sidebar */
+        position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+        z-index: 1; /* Stay on top */
+        top: 0; /* Stay at the top */
+        left: 0;
+        background-color: #111; /* Black */
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 3%;
+      }
+      .sidenav a {
+        padding: 0 auto;
+        width: 20%;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+      }
+
+      /* When you mouse over the navigation links, change their color */
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+      /* Style page content */
+      .main {
+        margin-left: 160px; /* Same as the width of the sidebar */
+        padding: 0px 10px;
+      }
+
+      /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+      @media screen and (max-height: 450px) {
+        .sidenav {
+          padding-top: 15px;
+        }
+        .sidenav a {
+          font-size: 5px;
+        }
+      }
+      .content {
+        padding-top: 120%;
+      }
+      .button1 {
+        position: absolute;
+        width: 150px;
+        height: 42px;
+        left: 25%;
+        top: 83%;
+        background: #000000;
+        border: 4px solid #009df2;
+        box-sizing: border-box;
+        color: #f4f1d0;
+        border-radius: 20px;
+
+        font-family: Oswald;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+      }
+      .reset {
+        padding-bottom: 50px;
+        font-family: Oswald;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 50px;
+        line-height: 74px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #f4f1d0;
+      }
+      .ellipse {
+        position: absolute;
+        width: 78px;
+        height: 78px;
+        left: 20%;
+        top: 53px;
+        background: #c7c7c7;
+        border-radius: 50%;
+      }
+      .text {
+        position: absolute;
+        width: 128px;
+        height: 67px;
+        left: 10%;
+        top: 100px;
+        font-family: Oswald;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 67px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #37abbf;
+      }
+      .back {
+        position: absolute;
+        width: 5%;
+        height: 3%;
+        left: 10%;
+        top: 85%;
+
+        font-family: Nunito;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 48px;
+        /* identical to box height */
+
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #111111;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="settings">Settings</p>
+    <form>
+      <label for="Fname" class="label">Full Name</label><br />
+      <input type="text" name="Full Name" id="Fname" class="input" />
+      <label for="pass" class="label1">Password</label><br />
+      <input type="text" name="password" id="pass" class="input1" />
+      <label for="Fname" class="label2">City</label><br />
+      <input type="text" name="city" id="city" class="input2" />
+      <label for="Fname" class="label3">Parent Account</label><br />
+      <input type="text" name="Full Name" id="Fname" class="input3" />
+      <label for="dob" class="label4">DOB</label><br />
+      <input type="date" name="dob" id="dob" class="input4" />
+      <button type="button" class="button"><p class="save">Save</p></button>
+      <button type="button" class="button1">Reset</button>
+    </form>
+    <div class="sidenav">
+      <svg height="140" width="500" class="ellipse">
+        <ellipse
+          cx="200"
+          cy="80"
+          rx="100"
+          ry="50"
+          style="fill: yellow; stroke: purple; stroke-width: 2"
+        />
+      </svg>
+      <p class="text">Student</p>
+      <a href="questionaire.html" class="content">Questionnaire</a>
+      <a href="dash.html" class="content">History</a>
+      <a href="index.html" class="content">Main</a>
+     
+    </div>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,300&family=Oswald:wght@400;500;600&display=swap&family=Roboto:wght@300;400;700&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  color: #F4F1D0;
+  position: relative;
+  background-color: #292929 !important;
+  overflow-x: hidden;
+}
+
+.heading {
+  color: #37ABBF;
+  font-family: 'roboto';
+  font-weight: bold;
+}
+
+.parallax#single {
+  position: absolute;
+  right: -3em;
+  top: 0em;
+  z-index: 0;
+}
+
+.parallax#double {
+  position: absolute;
+  left: 0;
+}
+
+#sidebar-wrapper {
+  background-color: #444444;
+}
+
+#sidebar-wrapper h2 {
+  color: #37ABBF;
+  font-family: 'oswald';
+  font-weight: bold;
+  font-size: 2em;
+}
+
+#sidebar-wrapper li.active a {
+  color: #F4F1D0 !important;
+}
+
+#sidebar-wrapper li.active:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  color: #37ABBF;
+}
+
+#sidebar-wrapper li:hover a {
+  color: #F4F1D0;
+}
+
+#navbar-wrapper {
+  display: none;
+}
+
+#content-wrapper {
+  padding: 5em !important;
+}
+
+#content-wrapper h3 {
+  margin-top: 5em !important;
+  margin-bottom: 2em;
+  font-family: 'roboto';
+  font-size: 1.3em;
+  letter-spacing: .2em;
+  font-weight: bold;
+  color: #F4F1D0;
+  text-transform: uppercase;
+}
+
+#content-wrapper li.flex-item {
+  background-color: #444444;
+  color: #F4F1D0;
+}
+
+#content-wrapper #action .card {
+  background-color: #444444;
+  padding: 10em 5em;
+}
+
+#content-wrapper #action .card .card-body {
+  text-align: center;
+  color: #F4F1D0;
+  font-family: 'oswald';
+  font-size: 2em;
+}
+
+#content-wrapper #overview .row {
+  background-color: #444444;
+  padding: 3em;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#content-wrapper #overview .row #over_chart {
+  height: 100% !important;
+}
+
+#content-wrapper #history .grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(22em, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));
+  grid-row-gap: 2em;
+}
+
+#content-wrapper #history .grid a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#content-wrapper #history .grid .card {
+  background-color: #444444;
+  padding: 10em 0;
+}
+
+#content-wrapper #history .grid .card .card-body {
+  text-align: center;
+}
+
+#content-wrapper #history .grid .card .card-body h4 {
+  font-family: 'roboto';
+}
+
+#content-wrapper #history .grid .card .card-body h3 {
+  font-family: 'Oswald';
+  font-size: 3em;
+  margin: 0 !important;
+  letter-spacing: 0;
+}
+
+@media only screen and (max-width: 767px) {
+  #navbar-wrapper {
+    display: block;
+  }
+  #navbar-wrapper .navbar {
+    background-color: #444444 !important;
+  }
+  #navbar-wrapper .navbar i {
+    color: white !important;
+  }
+}
+/*# sourceMappingURL=dash.css.map */

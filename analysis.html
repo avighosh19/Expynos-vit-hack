@@ -1,0 +1,281 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analysis</title>
+  <!-- Latest compiled and minified CSS -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" href="analysis.css" />
+  <link rel="stylesheet" href="dash.css" />
+  <!-- jQuery library -->
+  <script
+    src="https://kit.fontawesome.com/e872fa63b1.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.css">
+
+
+</head>
+<body>
+  <div id="wrapper">
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <center>
+          <div
+            style="
+              border-radius: 50%;
+              border: 1px solid #fff;
+              width: 60px;
+              height: 50px;
+              padding: 5px;
+            "
+          >
+            <i
+              class="fas fa-user-graduate"
+              style="font-size: 40px; color: #fff"
+            ></i>
+          </div>
+        </center>
+        <br />
+        <h2>John Doe</h2>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li class="active">
+          <a href="#"><i class="fa fa-home"></i>Home</a>
+        </li>
+        <li>
+          <a href="dash.html"
+            ><i
+              class="far fa-calendar-alt"
+              style="font-size: 24px; width: 60px"
+            ></i
+            >History</a
+          >
+        </li>
+        <li>
+          <a href="settings.html"
+            ><i class="fas fa-cogs" style="font-size: 24px; width: 60px"></i
+            >Settings</a
+          >
+        </li>
+        <li class="navlist4">
+          <a href="index.html"
+            ><i
+              class="fas fa-arrow-left"
+              style="font-size: 24px; width: 60px"
+            ></i
+            >Back</a
+          >
+        </li>
+      </ul>
+    </aside>
+
+    <div id="navbar-wrapper">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a href="#" class="navbar-brand" id="sidebar-toggle"
+              ><i class="fa fa-bars"></i
+            ></a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <section id="content-wrapper">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="heading">Analysis</h1>
+          <br /><br />
+          <h3>-Overview</h3>
+          <br />
+          <ul class="flex-container">
+            <li class="flex-item">
+              <center>
+                <div>
+                  ATTENTION SPAN
+                  <br /><br />
+                  <h5>30 MINS</h5>
+                </div>
+              </center>
+            </li>
+            <li class="flex-item">
+              <center>
+                <div>
+                  INTEREST
+                  <br /><br />
+                  <h5>History</h5>
+                </div>
+              </center>
+            </li>
+            <li class="flex-item">
+              <center>
+                <div>
+                  MENTAL HEALTH
+                  <br /><br />
+                  <h5>Okk</h5>
+                </div>
+              </center>
+            </li>
+          </ul>
+          <br /><br />
+          <h3>-Graph</h3>
+          <br />
+
+          <canvas id="graph" width="400" height="400"></canvas>
+          
+          <br /><br />
+          <h3>-Historgram</h3>
+          <br />
+          <canvas id="bar" width="400" height="400"></canvas>
+          <br /><br />
+
+          <div id="remarks"></div>
+
+          <h3>-Remarks</h3>
+          <textarea
+            placeholder="Give your remark"
+            rows="30"
+            name="comment[text]"
+            id="comment_text"
+            cols="40"
+            class="ui-autocomplete-input"
+            autocomplete="off"
+            role="textbox"
+            aria-autocomplete="list"
+            aria-haspopup="true"
+            style="border: none;
+            background-color: #444444;
+            color: #F4F1D0;
+            width: 100%";
+          ></textarea>
+          <br /><br />
+          <button
+            style="
+              float: right;
+
+              width: 150px;
+              height: 50px;
+
+              background: linear-gradient(270deg, #009BF2 0%, #08C3EC 100%);;
+              border-radius: 5px;
+              color: #F4F1D0;
+              font-family: 'oswald';
+              font-size: 2em;
+            "
+          >
+            <p>Save</p>
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+
+  <script type = "text/Javascript">
+
+var ctx = document.getElementById('graph').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['0', '10', '20', '30', '40', '50'],
+                datasets: [{
+                    label: 'For treated = 0',
+                    data: [0,0.4,0.12,0.3,0.2,0.1],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                    ],
+                    borderWidth: 3,
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                            
+                        }
+                    }]
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        fontColor: 'rgb(255, 99, 132)'
+                    },
+                    position: 'top',
+                    align: 'right',
+                }
+            }
+        });
+  </script>
+
+
+  <script type = "text/Javascript">
+
+var ctx = document.getElementById('bar').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['0', '10', '20', '30', '40', '50'],
+                datasets: [{
+                    label: 'For treated = 0',
+                    data: [0,0.17,0.12,0.28,0.2,0.1],
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 3,
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                            
+                        }
+                    }]
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        fontColor: 'rgb(255, 99, 132)'
+                    },
+                    position: 'top',
+                    align: 'right',
+                }
+            }
+        });
+  </script>
+
+</body>
+</html>
