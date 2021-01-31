@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <script
+    src="https://kit.fontawesome.com/e872fa63b1.js"
+    crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.css">
+
+    <link rel="stylesheet" href="dash.css">
+    <link rel="stylesheet" href="analysis.css">
+    
+
+    <title>Dashboard</title>
+</head>
+<body>
+
+    <div class="parallax" id="double"><img src="images/double_tri.svg"></div>
+    
+    <div id="wrapper">
+        <aside id="sidebar-wrapper">
+            <div class="sidebar-brand">
+              <center>
+                <div
+                style="
+                    border-radius: 50%;
+                    border: 1px solid #fff;
+                    width: 60px;
+                    height: 50px;
+                    padding: 5px;
+                    "
+                >
+                <i
+                class="fas fa-user-graduate"
+                style="font-size: 40px; color: #fff"
+                ></i>
+                </div>
+              </center>
+              <br />
+              <h2>John Doe</h2>
+            </div>
+    
+            <ul class="sidebar-nav">
+              <li class="active">
+                <a href="dash.html"><i class="fa fa-home"></i>Dashboard</a>
+            </li>
+              <li>
+                <a href="index.html"
+                ><i
+                    class="far fa-calendar-alt"
+                    style="font-size: 24px; width: 60px"
+                    ></i
+                  >home</a
+                >
+            </li>
+              <li>
+                <a href="meet.html"
+                ><i class="fas fa-cogs" style="font-size: 24px; width: 60px"></i
+                  >Meet</a
+                >
+            </li>
+              <li class="navlist4">
+                <a href="analysis.html"><i
+                    class="fas fa-arrow-left"
+                    style="font-size: 24px; width: 60px"
+                  ></i>Back</a>
+              </li>
+            </ul>
+          </aside>
+          
+        <div id="navbar-wrapper">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand" id="sidebar-toggle"
+                    ><i class="fa fa-bars"></i
+                    ></a>
+                </div>
+                </div>
+            </nav>
+        </div>
+        
+        
+        <div id="content-wrapper">
+            <h1 class="heading">Dashboard</h1>
+            
+            <h3>-ACTION</h3>
+            <div class="container" id="action">
+
+                
+                <div class="row">
+                    
+                    <div class="col-sm">
+                        <a href="questionaire.html">
+                            <div class="card">
+                                <div class="card-body">
+                                    Questionnaire
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="col-sm">
+                        <a href="meet.html">
+                            <div class="card">
+                                <div class="card-body">
+                                    Video call
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <h3>-OVERVIEW</h3>
+            <div class="container" id="overview">
+
+                <div class="parallax" id="single"><img src="images/single_tri.svg"></div>
+                
+                <div class="row">
+                    <canvas id="over_chart" width="400" height="400"></canvas>
+                </div>
+            </div>
+
+            <h3>-HISTORY</h3>
+            <div class="container" id="history">
+
+                <div class="grid">
+
+                    <div class="col">
+                        <a href="#">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4>Analysis of</h4>
+                                    <h3>12-02-2020</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col">
+                        <a href="#">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4>Analysis of</h4>
+                                    <h3>12-02-2020</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col">
+                        <a href="#">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4>Analysis of</h4>
+                                    <h3>12-02-2020</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+    <script type="text/javascript">
+
+        window.addEventListener('scroll', ()=>{
+            let img1 = document.querySelector('#single');
+            let img2 = document.querySelector('#double');
+
+            let value = window.scrollY;
+            img1.style.top = value * 0.7 + 'px'; 
+            img.style.top = value * 1 + 'px'; 
+        })
+    </script>
+
+    <!-- JS for the overview chart-->
+
+    
+</body>
+</html>
